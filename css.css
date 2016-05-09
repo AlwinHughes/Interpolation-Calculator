@@ -16,3 +16,11 @@ input{
 	border-color: blue;
 	border-width: 2px;
 }
+
+#footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 1em;
+    margin-top: -3em;
+}
