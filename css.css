@@ -1,7 +1,13 @@
-table{
+#value_table{
 	border-radius: 8px;
 	border-style: solid;
 	border-width: 4px;
+}
+#results{
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 4px;
+	border-color: green;
 }
 
 input{

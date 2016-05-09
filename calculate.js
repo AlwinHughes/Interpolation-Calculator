@@ -6,45 +6,38 @@ var no_of_points = 4;
 function calculate () {
 	points = [];
 	block_size = 0;
-	coifitionts = [0,0,0,0,0];
+	coifitionts = [0,0,0,0];
 	for(var i = 0; i < 4;i++ ){
 		points.push([document.getElementById('X_'+i).value, document.getElementById('Y_'+i).value]);
 	}
 	
-
-	//console.log(selectAllBut(points,1));
-	
- 	console.log(getstring(selectAllBut(points,1)));
-	var combs = combinations(getstring(selectAllBut(points,1)));
-	console.log(combs);
-
-	// for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
-	// 	var combs = combinations(getstring(selectAllBut(points,i)));
-	// 	console.log(combs);
-	// 	//calculating bottom of fraciton 
-	// 	var denominator = 1;
+	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
+		var combs = combinations(getstring(selectAllBut(points,i)));
+		console.log(combs);
+		//calculating bottom of fraciton 
 		
-	// 	for(var j = 0; j< points.length; j++){
-	// 		if(i != j){
-	// 			// console.log("j"+j);
+		var denominator = 1;
+		for(var j = 0; j< points.length; j++){
+			if(i != j){
 
-	// 			denominator *= (points[i][0]-points[j][0]); 
-	// 		}
-	// 	}
-	// 	console.log("denominator:"+denominator);
-	// 	for (var k = 0; k < combs.length; k++) {
-	// 		console.log("k:"+k);
-	// 		console.log("comb:"+combs[k]);
-	// 		console.log("comb e:"+math.eval(combs[k]));
-	// 		console.log("length"+combs[k].replace(/[^*]/g, "").length);
-	// 		console.log("to add"+ math.eval(combs[k])*(points[i][1]/denominator));
+				denominator *= (points[i][0]-points[j][0]); 
+			}
+		}
 
-	// 		coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.eval(combs[k])*(points[i][1]/denominator);
-	// 	};
-		
-	// }
+		//dealing with all terms that are not the highest power
+		console.log("denominator:"+denominator);
+		for (var k = 0; k < combs.length; k++) {
+			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.eval(combs[k])*(points[i][1]/denominator);
+		};
+		//dealing with coifitions for highest power
+		coifitionts[0] += points[i][1]/denominator;
+	}
 
 	console.log(coifitionts);
+
+	for (var i = 0; i < coifitionts.length; i++) {
+		document.getElementById("x^"+(4-i-1)).innerHTML = coifitionts[i]
+	};
 }
 
 function selectAllBut(array,not) {
@@ -69,16 +62,17 @@ function logPoints(){
 function getstring(data){
 	//geting block size
 	for (var i = 0; i < data.length; i++) {
-		console.log(i);
+		
 		if(String(data[i][0]).length>block_size){
-			block_size = String(-points[i][0]).length;
+			console.log(i);
+			block_size = String(-data[i][0]).length;
 		}
 	};
 	console.log("block_size: "+block_size);
 	var return_string = "";
 
-	for (var i = 0; i < points.length; i++) {
-		return_string = return_string+ addzeroes(String(-points[i][0]),(-points[i][0])<0);
+	for (var i = 0; i < data.length; i++) {
+		return_string = return_string+ addzeroes(String(-data[i][0]),(-data[i][0])<0);
 	}
 	console.log(return_string);
 	return return_string;
