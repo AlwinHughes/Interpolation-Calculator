@@ -4,13 +4,25 @@ var raw_coifitions = [new Array(4),new Array(4),new Array(4),new Array(4)]
 var block_size;
 var no_of_points = 4;
 function calculate () {
+	// set up
 	points = [];
 	block_size = 0;
 	coifitionts = [0,0,0,0];
+
+	//populating array
 	for(var i = 0; i < 4;i++ ){
 		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
 	
+	for(var i = 0; i<points.length; i++){
+		for(var j = 0; j< selectAllBut(points).length; j++){
+			if(points[i][0]==points[j][0]){
+				alert("Repeated x cordinates","Error");
+				return;
+			}
+		}
+	}
+
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
 
