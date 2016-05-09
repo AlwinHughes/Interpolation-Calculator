@@ -8,12 +8,16 @@ function calculate () {
 	block_size = 0;
 	coifitionts = [0,0,0,0];
 	for(var i = 0; i < 4;i++ ){
-		points.push([document.getElementById('X_'+i).value, document.getElementById('Y_'+i).value]);
+		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
 	
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
-		console.log(combs);
+		
+
+		//console.log("add zerose:"+addzeroes(--1,(--1)<0));
+
+
 		//calculating bottom of fraciton 
 		
 		var denominator = 1;
@@ -27,6 +31,7 @@ function calculate () {
 		//dealing with all terms that are not the highest power
 		console.log("denominator:"+denominator);
 		for (var k = 0; k < combs.length; k++) {
+			console.log(combs[k]);
 			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.eval(combs[k])*(points[i][1]/denominator);
 		};
 		//dealing with coifitions for highest power
@@ -60,19 +65,21 @@ function logPoints(){
 
 
 function getstring(data){
+	console.log(data);
 	//geting block size
 	for (var i = 0; i < data.length; i++) {
-		
-		if(String(data[i][0]).length>block_size){
-			console.log(i);
-			block_size = String(-data[i][0]).length;
+
+		if(String(-1*data[i]).length>block_size){
+			console.log("data: "+-1*data[i]);
+			block_size = String(-1*data[i]).length;		
 		}
 	};
-	console.log("block_size: "+block_size);
+
+	console.log("block size"+block_size)
 	var return_string = "";
 
 	for (var i = 0; i < data.length; i++) {
-		return_string = return_string+ addzeroes(String(-data[i][0]),(-data[i][0])<0);
+		return_string = return_string+ addzeroes(String((-1)*data[i]),((-1)*data[i])<0);
 	}
 	console.log(return_string);
 	return return_string;
