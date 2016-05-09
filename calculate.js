@@ -13,17 +13,11 @@ function calculate () {
 	
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
-		
-
-		//console.log("add zerose:"+addzeroes(--1,(--1)<0));
-
 
 		//calculating bottom of fraciton 
-		
 		var denominator = 1;
 		for(var j = 0; j< points.length; j++){
 			if(i != j){
-
 				denominator *= (points[i][0]-points[j][0]); 
 			}
 		}
@@ -32,16 +26,18 @@ function calculate () {
 		console.log("denominator:"+denominator);
 		for (var k = 0; k < combs.length; k++) {
 			console.log(combs[k]);
-			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.eval(combs[k])*(points[i][1]/denominator);
+			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.chain(math.eval(combs[k])).multiply(points[i][1]).divide(denominator).done();
 		};
+
 		//dealing with coifitions for highest power
 		coifitionts[0] += points[i][1]/denominator;
 	}
 
 	console.log(coifitionts);
 
+	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {
-		document.getElementById("x^"+(4-i-1)).innerHTML = coifitionts[i]
+		document.getElementById("x^"+(4-i-1)).innerHTML = math.fraction(coifitionts[i]);
 	};
 }
 
@@ -63,6 +59,15 @@ function logPoints(){
 	console.log(points_string);
 }
 
+function findSmallest(array){
+	var current = array[0];
+	for (var i = 0; i < array.length; i++) {
+		if(array[i]<current){
+			current = array[i];
+		}
+	};
+	return current;
+}
 
 function getstring(data){
 	console.log(data);
