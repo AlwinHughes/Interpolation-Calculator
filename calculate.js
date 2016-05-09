@@ -37,7 +37,7 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {
-		document.getElementById("x^"+(4-i-1)).innerHTML = math.fraction(coifitionts[i]);
+		document.getElementById("x^"+(4-i-1)).innerHTML = coifitionts[i];
 	};
 }
 
