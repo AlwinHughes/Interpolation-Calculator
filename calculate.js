@@ -15,9 +15,9 @@ function calculate () {
 	}
 	
 	for(var i = 0; i<points.length; i++){
-		for(var j = 0; j< selectAllBut(points).length; j++){
-			if(points[i][0]==points[j][0]){
-				alert("Repeated x cordinates","Error");
+		for(var j = 0; j< selectAllBut(points,i).length; j++){
+			if(points[i][0]==selectAllBut(points,i)[j]){
+				alert("Repeated x cordinates");
 				return;
 			}
 		}
