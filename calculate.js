@@ -1,5 +1,5 @@
-var	points = new Array(4);
-var coifitionts = new Array(4);//in increasing powers
+var	points;
+var coifitionts;//in increasing powers
 var raw_coifitions = [new Array(4),new Array(4),new Array(4),new Array(4)]
 var block_size;
 var no_of_points = 4;
@@ -7,10 +7,13 @@ function calculate () {
 	// set up
 	points = [];
 	block_size = 0;
-	coifitionts = [0,0,0,0];
+	coifitionts = Array(no_of_points);
 
+	for (var i = 0; i < coifitionts.length; i++) {
+		coifitionts[i] = 0;
+	};
 	//populating array
-	for(var i = 0; i < 4;i++ ){
+	for(var i = 0; i < no_of_points;i++ ){
 		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
 	
@@ -38,7 +41,7 @@ function calculate () {
 		console.log("denominator:"+denominator);
 		for (var k = 0; k < combs.length; k++) {
 			console.log(combs[k]);
-			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.chain(math.eval(combs[k])).multiply(points[i][1]).divide(denominator).done();
+			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.chain(math.eval(combs[k])).multiply(math.fraction(points[i][1],denominator)).done();
 		};
 
 		//dealing with coifitions for highest power
@@ -49,7 +52,7 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {
-		document.getElementById("x^"+(4-i-1)).innerHTML = coifitionts[i];
+		document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];
 	};
 }
 
@@ -118,6 +121,18 @@ function addzeroes(string,is_negative){
 	}
 }
 
+$(document).ready(function(){
+	$("#delete_row").on('click',"#"+no_of_points-1, function(){
+		$("#"+no_of_points-1).remove();
+		no_of_points--;
+	})
+
+	$("#add_row").click(function(){
+		$('#value_table tbody').append('<tr id="row_'+(no_of_points+1)+'"> <td><input type="number"id="X_'+(no_of_points+1)+'"></td> <td><input type="number"id="Y_'+(no_of_points+1)+'"></td> </tr>')
+		no_of_points++;
+	})
+})
+
 
 function combinations(str) {
     return fn("", str, []);
@@ -151,5 +166,4 @@ function deleteRow(){
 
 
 function addRow(){
-	console.log("addRow");
-}
+	}

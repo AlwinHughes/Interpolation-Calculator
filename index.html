@@ -12,6 +12,7 @@
 	
 	<center>
 	<table id="value_table">
+		<tbody>
 		<tr>
 			<td><center>x</center></td>
 			<td><center>f(x)</center></td>
@@ -28,10 +29,11 @@
 			<td><input type="number"id="X_2"></td>
 			<td><input type="number" id="Y_2"></td>
 		</tr>
-		<trid="row_3">
+		<tr id="row_3">
 			<td><input type="number"id="X_3"></td>
 			<td><input type="number"id="Y_3"></td>
 		</tr>
+		</tbody>
 
 	</table>
 	</center>
@@ -41,10 +43,10 @@
 		<button text="calculate" onclick="calculate()">Calculate!</button>
 	</center>
 	<center>
-		<button onclick="deleteRow()">Delete Row</button>
+		<button id="delete_row" onclick="deleteRow()">Delete Row</button>
 	</center>
 	 <center>
-		<button onclick="addRow()">Add row</button>
+		<button id="add_row"onclick="addRow()">Add row</button>
 	</center>
 
 	<br>
