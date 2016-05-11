@@ -13,7 +13,7 @@ function calculate () {
 		coifitionts[i] = 0;
 	};
 	//populating array
-	for(var i = 0; i < no_of_points;i++ ){
+	for(var i = 0; i < no_of_points-1;i++ ){
 		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
 	
@@ -28,7 +28,7 @@ function calculate () {
 
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
-
+			console.log(combs);
 		//calculating bottom of fraciton 
 		var denominator = 1;
 		for(var j = 0; j< points.length; j++){
@@ -52,7 +52,7 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {
-		document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];
+		document.getElementById("x^"+(no_of_points-i-2)).innerHTML = coifitionts[i];
 	};
 }
 
