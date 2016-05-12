@@ -13,7 +13,7 @@ function calculate () {
 		coifitionts[i] = 0;
 	};
 	//populating array
-	for(var i = 0; i < no_of_points-1;i++ ){
+	for(var i = 0; i < no_of_points;i++ ){
 		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
 	
@@ -52,7 +52,8 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {
-		document.getElementById("x^"+(no_of_points-i-2)).innerHTML = coifitionts[i];
+		console.log(no_of_points-i-1);
+		document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];
 	};
 }
 
@@ -122,16 +123,19 @@ function addzeroes(string,is_negative){
 }
 
 $(document).ready(function(){
-	$("#delete_row").on('click',"#"+no_of_points-1, function(){
+	$("#delete_row").on('click',function(){
+		console.log(no_of_points);
 		if(no_of_points>3){
-			$("#"+no_of_points-1).remove();
+			
+			console.log($('#value_table_body').children().last().remove());
 			no_of_points--;
 		}
 	})
 
 	$("#add_row").click(function(){
+
 		no_of_points++;
-		$('#value_table tbody').append('<tr id="row_'+(no_of_points+1)+'"> <td><input type="number"id="X_'+(no_of_points+1)+'"></td> <td><input type="number"id="Y_'+(no_of_points+1)+'"></td> </tr>');
+		$('#value_table tbody').append('<tr id="row_'+(no_of_points-1)+'"> <td><input type="number"id="X_'+(no_of_points-1)+'"></td> <td><input type="number"id="Y_'+(no_of_points-1)+'"></td> </tr>');
 	})
 })
 
@@ -161,11 +165,3 @@ function selectFromArray (rest) {
 	return return_string+"*";
 }
 
-function deleteRow(){
-	console.log("#row_"+String(no_of_points-1));
-	$("#row_"+String(no_of_points-1)).remove();
-}
-
-
-function addRow(){
-	}
