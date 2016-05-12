@@ -124,18 +124,20 @@ function addzeroes(string,is_negative){
 
 $(document).ready(function(){
 	$("#delete_row").on('click',function(){
-		console.log(no_of_points);
 		if(no_of_points>3){
-			
-			console.log($('#value_table_body').children().last().remove());
+			$('#value_table_body').children().last().remove();
+			$("#results_lable").children().first().remove();
+			$("#result_row").children().first().remove();
 			no_of_points--;
 		}
 	})
 
 	$("#add_row").click(function(){
 
+		$('#value_table tbody').append('<tr id="row_'+(no_of_points)+'"> <td><input type="number"id="X_'+(no_of_points)+'"></td> <td><input type="number"id="Y_'+(no_of_points)+'"></td> </tr>');
+		$('#results_lable').prepend("<td><center>x^"+(no_of_points)+"</center></td>");
+		$('#result_row').prepend('<td id="x^'+(no_of_points)+'" height="20px" width="50px"></td>')
 		no_of_points++;
-		$('#value_table tbody').append('<tr id="row_'+(no_of_points-1)+'"> <td><input type="number"id="X_'+(no_of_points-1)+'"></td> <td><input type="number"id="Y_'+(no_of_points-1)+'"></td> </tr>');
 	})
 })
 
