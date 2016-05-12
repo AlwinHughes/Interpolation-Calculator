@@ -123,13 +123,15 @@ function addzeroes(string,is_negative){
 
 $(document).ready(function(){
 	$("#delete_row").on('click',"#"+no_of_points-1, function(){
-		$("#"+no_of_points-1).remove();
-		no_of_points--;
+		if(no_of_points>3){
+			$("#"+no_of_points-1).remove();
+			no_of_points--;
+		}
 	})
 
 	$("#add_row").click(function(){
-		$('#value_table tbody').append('<tr id="row_'+(no_of_points+1)+'"> <td><input type="number"id="X_'+(no_of_points+1)+'"></td> <td><input type="number"id="Y_'+(no_of_points+1)+'"></td> </tr>')
 		no_of_points++;
+		$('#value_table tbody').append('<tr id="row_'+(no_of_points+1)+'"> <td><input type="number"id="X_'+(no_of_points+1)+'"></td> <td><input type="number"id="Y_'+(no_of_points+1)+'"></td> </tr>');
 	})
 })
 
