@@ -131,7 +131,8 @@ function addzeroes(string,is_negative){
 }
 
 $(document).ready(function(){
-	$("#delete_row").on('click',function(){
+	$("#delete_row").click(function(){
+		console.log("delete row");
 		if(no_of_points>2){
 			resetResults();
 			$('#value_table_body').children().last().remove();
@@ -139,7 +140,7 @@ $(document).ready(function(){
 			$("#result_row").children().first().remove();
 			no_of_points--;
 		}
-	})
+	});
 
 	$("#add_row").click(function(){
 
