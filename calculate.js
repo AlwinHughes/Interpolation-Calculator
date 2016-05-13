@@ -5,6 +5,7 @@ var block_size;
 var no_of_points = 4;
 function calculate () {
 	// set up
+	resetResults();
 	points = [];
 	block_size = 0;
 	coifitionts = Array(no_of_points);
@@ -12,23 +13,28 @@ function calculate () {
 	for (var i = 0; i < coifitionts.length; i++) {
 		coifitionts[i] = 0;
 	};
+	
 	//populating array
 	for(var i = 0; i < no_of_points;i++ ){
 		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
-	
+
+	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
 			if(points[i][0]==selectAllBut(points,i)[j]){
 				alert("Repeated x cordinates");
 				return;
+			}if(points[i][0]==0){
+				alert("X cordinate of zero (sorry there is a bug with this)");
+				return;	
 			}
 		}
 	}
 
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
-			console.log(combs);
+			
 		//calculating bottom of fraciton 
 		var denominator = 1;
 		for(var j = 0; j< points.length; j++){
@@ -38,9 +44,8 @@ function calculate () {
 		}
 
 		//dealing with all terms that are not the highest power
-		console.log("denominator:"+denominator);
+
 		for (var k = 0; k < combs.length; k++) {
-			console.log(combs[k]);
 			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.chain(math.eval(combs[k])).multiply(math.fraction(points[i][1],denominator)).done();
 		};
 
@@ -52,7 +57,6 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {
-		console.log(no_of_points-i-1);
 		document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];
 	};
 }
@@ -67,12 +71,17 @@ function selectAllBut(array,not) {
 	return variable;
 }
 
+function resetResults(){
+	for (var i = 0; i < no_of_points; i++) {
+		document.getElementById("x^"+i).innerHTML = "";
+	}
+}
+
 function logPoints(){
 	var points_string = "";
 	points.forEach(function(item,index){
 		points_string +='['+item[0]+','+item[1]+'],'
 	})
-	console.log(points_string);
 }
 
 function findSmallest(array){
@@ -86,23 +95,18 @@ function findSmallest(array){
 }
 
 function getstring(data){
-	console.log(data);
 	//geting block size
 	for (var i = 0; i < data.length; i++) {
-
 		if(String(-1*data[i]).length>block_size){
-			console.log("data: "+-1*data[i]);
 			block_size = String(-1*data[i]).length;		
 		}
 	};
 
-	console.log("block size"+block_size)
 	var return_string = "";
 
 	for (var i = 0; i < data.length; i++) {
 		return_string = return_string+ addzeroes(String((-1)*data[i]),((-1)*data[i])<0);
 	}
-	console.log(return_string);
 	return return_string;
 }
 
@@ -124,7 +128,8 @@ function addzeroes(string,is_negative){
 
 $(document).ready(function(){
 	$("#delete_row").on('click',function(){
-		if(no_of_points>3){
+		if(no_of_points>2){
+			resetResults();
 			$('#value_table_body').children().last().remove();
 			$("#results_lable").children().first().remove();
 			$("#result_row").children().first().remove();

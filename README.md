@@ -3,6 +3,6 @@ A website that will Interpolate n points and find at most a n-1 order polynomial
 
 It can now interpolate n points. 
 
-lots of rounding errors.
+Lots of rounding errors.
 
 (This could probabby all be done in a much better way)

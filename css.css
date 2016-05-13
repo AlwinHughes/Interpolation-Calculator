@@ -1,3 +1,5 @@
+
+
 #value_table{
 	border-radius: 8px;
 	border-style: solid;
@@ -23,4 +25,22 @@ input{
     z-index: 10;
     height: 1em;
     margin-top: -3em;
+}
+#interpolation{
+	float: left;
+	width: 49%;
+	border-style: solid;
+	border-radius: 8px;
+	border-width: 4px;
+	border-color: blue;
+
+}
+
+#tablemode{
+	float: right;
+	width: 49%;
+	border-radius: 8px;
+	border-style: solid;
+	border-width: 4px;
+	border-color: blue;
 }

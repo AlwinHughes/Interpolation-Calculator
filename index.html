@@ -1,80 +1,86 @@
 <html>
 <head>
 	<title>Interpolation</title>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script> 
-		<link rel="stylesheet" type="text/css" href="css.css">
-		<script type="text/javascript" src="calculate.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	</head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script> 
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<script type="text/javascript" src="calculate.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+</head>
 <body>
-	<center><h1>Interpolation</h1></center>
-	
-	<center>
-	<table id="value_table">
-		<tbody id="value_table_body">
-		<tr>
-			<td><center>x</center></td>
-			<td><center>f(x)</center></td>
-		</tr>
-		<tr id="row_0">
-			<td><input type="number" id="X_0"></td>
-			<td><input type="number" id="Y_0"></td>
-		</tr>
-		<tr id="row_1">
-			<td><input type="number" id="X_1"></td>
-			<td><input type="number" id="Y_1"></td>
-		</tr>
-		<tr id="row_2">
-			<td><input type="number"id="X_2"></td>
-			<td><input type="number" id="Y_2"></td>
-		</tr>
-		<tr id="row_3">
-			<td><input type="number"id="X_3"></td>
-			<td><input type="number"id="Y_3"></td>
-		</tr>
-		</tbody>
+	<div id="interpolation">
+		<center><h1>Interpolation</h1></center>
 
-	</table>
-	</center>
-	<br>
-	<br>
-	<center>
-		<button text="calculate" onclick="calculate()">Calculate!</button>
-	</center>
-	<center>
-		<button id="delete_row" >Delete Row</button>
-	</center>
-	 <center>
-		<button id="add_row">Add row</button>
-	</center>
+		<center>
+			<table id="value_table">
+				<tbody id="value_table_body">
+					<tr>
+						<td><center>x</center></td>
+						<td><center>f(x)</center></td>
+					</tr>
+					<tr id="row_0">
+						<td><input type="number" id="X_0"></td>
+						<td><input type="number" id="Y_0"></td>
+					</tr>
+					<tr id="row_1">
+						<td><input type="number" id="X_1"></td>
+						<td><input type="number" id="Y_1"></td>
+					</tr>
+					<tr id="row_2">
+						<td><input type="number"id="X_2"></td>
+						<td><input type="number" id="Y_2"></td>
+					</tr>
+					<tr id="row_3">
+						<td><input type="number"id="X_3"></td>
+						<td><input type="number"id="Y_3"></td>
+					</tr>
+				</tbody>
 
-	<br>
-	<br>
-	<center><h3>Beware of rounding errors!</h3></center>
-	<center><h5>(There are allot of them)</h5></center>
-	<center>
-		<table id="results" border="1|0">
-			<tr id="results_lable">
-				<td><center>x^3</center></td>
-				<td><center>x^2</center></td>
-				<td><center>x^1</center></td>
-				<td><center>x^0</center></td>
-			</tr>
-			<tr id="result_row">
-				<td id="x^3" height="20px" width="50px"></td>
-				<td id="x^2" height="20px" width="50px"></td>
-				<td id="x^1" height="20px" width="50px"></td>
-				<td id="x^0" height="20px" width="50px"></td>
-			</tr>
-		</table>
-	</center>
-	
-<br>
-<br>
-<br>
+			</table>
+		</center>
+		<br>
+		<br>
+		<center>
+			<button text="calculate" onclick="calculate()">Calculate!</button>
+		</center>
+		<center>
+			<button id="delete_row" >Delete Row</button>
+		</center>
+		<center>
+			<button id="add_row">Add row</button>
+		</center>
 
-<div id="footer">
-<center><a href="https://github.com/AlwinHughes/Interpolation-Calculator"><h4>Help fix this mess</h4></a></center></div>
-</body>
+		<br>
+		<br>
+		<center><h3>Beware of rounding errors!</h3></center>
+		<center><h5>(There are allot of them)</h5></center>
+		<center>
+			<table id="results" border="1|0">
+				<tr id="results_lable">
+					<td><center>x^3</center></td>
+					<td><center>x^2</center></td>
+					<td><center>x^1</center></td>
+					<td><center>x^0</center></td>
+				</tr>
+				<tr id="result_row">
+					<td id="x^3" height="20px" width="50px"></td>
+					<td id="x^2" height="20px" width="50px"></td>
+					<td id="x^1" height="20px" width="50px"></td>
+					<td id="x^0" height="20px" width="50px"></td>
+				</tr>
+			</table>
+		</center>
+
+		<br>
+		<br>
+		<br>
+		</div>
+		<div id="tablemode">
+			<center><h1>Table Mode</h1></center>
+
+
+		</div>
+		<div id="footer">
+			<center><a href="https://github.com/AlwinHughes/Interpolation-Calculator"><h4>Help fix this mess</h4></a></center></div>
+	</body>
 </htm>
