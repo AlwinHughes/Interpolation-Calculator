@@ -22,13 +22,17 @@ function calculate () {
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
-			if(points[i][0]==selectAllBut(points,i)[j]){
-				alert("Repeated x cordinates");
-				return;
-			}if(points[i][0]==0){
+			if(points[i][0]==""){
+				alert("Please enter values for all fields");
+				return;	
+			}else if(points[i][0]==0){
 				alert("X cordinate of zero (sorry there is a bug with this)");
 				return;	
+			}else if(points[i][0]==selectAllBut(points,i)[j]){
+				alert("Repeated x cordinates");
+				return;
 			}
+
 		}
 	}
 
@@ -42,11 +46,11 @@ function calculate () {
 				denominator *= (points[i][0]-points[j][0]); 
 			}
 		}
-
+		
 		//dealing with all terms that are not the highest power
 
 		for (var k = 0; k < combs.length; k++) {
-			coifitionts[combs[k].replace(/[^*]/g, "").length+1] += math.chain(math.eval(combs[k])).multiply(math.fraction(points[i][1],denominator)).done();
+			coifitionts[combs[k].replace(/[^*]/g, "").length+1] = math.chain(math.eval(combs[k])).multiply(math.fraction(points[i][1],denominator)).add(coifitionts[combs[k].replace(/[^*]/g, "").length+1]).done();
 		};
 
 		//dealing with coifitions for highest power
