@@ -22,7 +22,7 @@ function calculate () {
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
-			if(points[i][0]==""){
+			if(points[i][0]==""||points[i][0]){
 				alert("Please enter values for all fields");
 				return;	
 			}else if(points[i][0]==0){
