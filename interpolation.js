@@ -57,7 +57,7 @@ function calculate () {
 		};
 
 		//dealing with coifitions for highest power
-		coifitionts[0] += points[i][1]/denominator;
+		coifitionts[0] = math.chain(coifitionts[0]).add(math.chain(points[i][1]).divide(denominator).done());
 	}
 
 	console.log(coifitionts);
@@ -66,6 +66,7 @@ function calculate () {
 	for (var i = 0; i < coifitionts.length; i++) {
 		document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];
 	};
+
 }
 
 function selectAllBut(array,not) {

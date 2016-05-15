@@ -3,19 +3,27 @@ var order = 3;
 var x_vals;
 var y_vals;
 
-function tablemodeCalculate(){
+function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	//set up
 	x_vals = [];
 	table_coifits = [];
-	
-	//getting values
-	for (var i = 0; i < 3; i++) {
-		x_vals.push(document.getElementById("table_x_"+i).value);
-	};
-	
-	for (var i = 0; i <= order; i++) {
-		table_coifits.push(document.getElementById("coif_"+i).value);	
+	if(!push_to_ui){
+		//getting values
+
+		for (var i = 0; i < 3; i++) {
+			x_vals.push(document.getElementById("table_x_"+i).value);
+		};
+		
+		for (var i = 0; i <= order; i++) {
+			table_coifits.push(document.getElementById("coif_"+i).value);	
+		}
+
+	}else{
+		x_vals = in_x;
+		table_coifits = in_coif;
 	}
+	
+	
 	
 	y_vals = Array(x_vals.length);
 
@@ -23,11 +31,15 @@ function tablemodeCalculate(){
 	for (var i = 0; i < y_vals.length; i++) {
 		y_vals[i] = getYValue(x_vals[i],table_coifits);
 	};
+	if(!push_to_ui){
+		//displaying values
+		for (var i = 0; i < y_vals.length; i++) {
+			document.getElementById("table_y_"+i).innerHTML = y_vals[i];
+		};	
+	}else{
+		return y_vals;
+	}
 	
-	//displaying values
-	for (var i = 0; i < y_vals.length; i++) {
-		document.getElementById("table_y_"+i).innerHTML = y_vals[i];
-	};
 
 };
 
@@ -35,8 +47,7 @@ function tablemodeCalculate(){
 function getYValue(x,coifitionts){
 	var return_val = 0;
 	for(var i = 0; i<coifitionts.length; i++){
-		console.log(Math.pow(x,i)*coifitionts[i]);
-		return_val += Math.pow(x,i)*coifitionts[i];
+		return_val += math.chain(x).pow(i).multiply(coifitionts[i]);
 	}
 	return return_val;
 }
