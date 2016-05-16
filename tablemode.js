@@ -2,6 +2,7 @@ var table_coifits;// table_coifits[i] is coifitiont in Ax^n where n = i
 var order = 3;
 var x_vals;
 var y_vals;
+var no_of_x=2;//zero based counting
 
 function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	//set up
@@ -39,8 +40,6 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	}else{
 		return y_vals;
 	}
-	
-
 };
 
 
@@ -64,6 +63,18 @@ $(document).ready(function(){
 		if(order>1){
 			$("#coif_row_"+order).remove();
 			order--;	
+		}
+	});
+
+	$('#table_add_input_row').click(function(){
+		no_of_x++;
+		$("#table_restuls_above").before('<tr> <td><center><input type="number" id="table_x_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
+	});
+
+	$('#table_delete_input_row').click(function(){
+		if(no_of_x>0){
+			$("#table_restuls_above").prev().remove();
+			no_of_x--;
 		}
 	})
 })

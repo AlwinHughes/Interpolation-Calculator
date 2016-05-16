@@ -22,7 +22,7 @@ function calculate () {
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
 			console.log(points[i][0]);
-			if(points[i][0].length=="" || points[i][1].length==""){
+			if(points[i][0].length==0 || points[i][1].length==""){
 				alert("Please enter values for all fields");
 				return;	
 			}else if(points[i][0]==0){
@@ -31,8 +31,8 @@ function calculate () {
 			}else if(points[i][0]==selectAllBut(points,i)[j]){
 				alert("Repeated x cordinates");
 				return;
-			}else if(isNaN(points[i][0])||isNaN(points[i][1]=="e")){
-				alert("f(x) and x \u2208 \u211A")
+			}else if(isNaN(points[i][0])||isNaN(points[i][1])){
+				alert("f(x) and x \u2208 \u211A");
 				return;
 			}
 
