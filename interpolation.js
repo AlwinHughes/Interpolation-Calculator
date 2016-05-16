@@ -57,7 +57,6 @@ function calculate () {
 		coifitionts[0] = math.chain(coifitionts[0]).add(math.fraction(points[i][1],denominator)).done();
 	}
 
-	console.log(coifitionts);
 
 	var lowest = findSmallest(coifitionts);
 	for (var i = 0; i < coifitionts.length; i++) {

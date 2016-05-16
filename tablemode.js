@@ -2,7 +2,7 @@ var table_coifits;// table_coifits[i] is coifitiont in Ax^n where n = i
 var order = 3;
 var x_vals;
 var y_vals;
-var no_of_x=2;//zero based counting
+var no_of_x=3;//zero based counting
 
 function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	//set up
