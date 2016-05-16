@@ -25,9 +25,6 @@ function calculate () {
 			if(points[i][0].length==0 || points[i][1].length==""){
 				alert("Please enter values for all fields");
 				return;	
-			}else if(points[i][0]==0){
-				alert("X cordinate of zero (sorry there is a bug with this)");
-				return;	
 			}else if(points[i][0]==selectAllBut(points,i)[j]){
 				alert("Repeated x cordinates");
 				return;
@@ -57,7 +54,7 @@ function calculate () {
 		};
 
 		//dealing with coifitions for highest power
-		coifitionts[0] = math.chain(coifitionts[0]).add(math.chain(points[i][1]).divide(denominator).done());
+		coifitionts[0] = math.chain(coifitionts[0]).add(math.fraction(points[i][1],denominator)).done();
 	}
 
 	console.log(coifitionts);

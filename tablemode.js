@@ -11,7 +11,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	if(!push_to_ui){
 		//getting values
 
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < no_of_x+1; i++) {
 			x_vals.push(document.getElementById("table_x_"+i).value);
 		};
 		
