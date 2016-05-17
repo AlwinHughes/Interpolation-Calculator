@@ -50,12 +50,14 @@
 		<center>
 			<button id="add_row">Add row</button>
 		</center>
-
 		<br>
-		<br>
-		<center><h3>Beware of rounding errors!</h3></center>
-		<center><h5>(There are allot of them)</h5></center>
+		<center>Answer as:</center>
+		<center><input type="radio" name="display_type" value="fraction" id="radio_frac">Fraction</center>
+		<center><input type="radio" name="display_type" value="decimal" id="radio_decimal" checked="checked">Decimal</center>
+		
+		<center><h3>There are some issues with rounding errors</h3></center>
 		<center>
+			<h3>f(x) = </h3>
 			<table class="results" border="1|0">
 				<tr id="results_lable">
 					<td><center>x^3</center></td>
@@ -121,7 +123,9 @@
 			<button id="tablemode_higher_order">Higher Order</button>
 		</center>
 
-		<br><br><br>
+		<br>
+
+		<br>
 		<center>
 			<table id="table_results" class="results" border"1|0">
 				<tr><td><center>x</center></td><td><center>f(x)</center></td></tr>

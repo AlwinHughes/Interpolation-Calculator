@@ -2,6 +2,7 @@ var	points;
 var coifitionts;//in increasing powers
 var block_size;
 var no_of_points = 4;
+var answer_as_decimal = true;
 function calculate () {
 	// set up
 	resetResults();
@@ -17,7 +18,6 @@ function calculate () {
 	for(var i = 0; i < no_of_points;i++ ){
 		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
 	}
-	console.log(points);
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
@@ -35,6 +35,7 @@ function calculate () {
 
 		}
 	}
+	
 
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
@@ -57,12 +58,24 @@ function calculate () {
 		coifitionts[0] = math.chain(coifitionts[0]).add(math.fraction(points[i][1],denominator)).done();
 	}
 
+	console.log(coifitionts);
 
 	var lowest = findSmallest(coifitionts);
-	for (var i = 0; i < coifitionts.length; i++) {
-		document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];
-	};
+	displayCoifits();
 
+}
+
+function displayCoifits(){
+	if(coifitionts[0]){
+		for (var i = 0; i < coifitionts.length; i++) {
+			if(answer_as_decimal){
+				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];	
+			}else{
+				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = (coifitionts[i].n==0)? "0": (coifitionts[i].d == 1) ? coifitionts[i].n*coifitionts[i].s : (coifitionts[i].s == -1 ? "-" : " ") + coifitionts[i].n +"/" +coifitionts[i].d;	
+			}
+			
+		};
+	}
 }
 
 function selectAllBut(array,not) {
@@ -148,7 +161,18 @@ $(document).ready(function(){
 		$('#results_lable').prepend("<td><center>x^"+(no_of_points)+"</center></td>");
 		$('#result_row').prepend('<td id="x^'+(no_of_points)+'" height="20px" width="50px"></td>')
 		no_of_points++;
-	})
+	});
+
+	$('#radio_frac').click(function(){
+		answer_as_decimal = false;
+		displayCoifits();
+	});
+	
+	$('#radio_decimal').click(function(){
+		answer_as_decimal = true;
+		displayCoifits();
+	});
+
 })
 
 

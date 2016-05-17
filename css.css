@@ -21,7 +21,7 @@ input{
 
 #footer {
     clear: both;
-    position: relative;
+    position: static;
     z-index: 10;
     height: 1em;
     margin-top: -3em;
