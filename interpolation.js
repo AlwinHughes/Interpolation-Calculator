@@ -3,6 +3,9 @@ var coifitionts;//in increasing powers
 var block_size;
 var no_of_points = 4;
 var answer_as_decimal = true;
+math.config({
+  number: 'Fraction'
+});
 function calculate () {
 	// set up
 	resetResults();
@@ -21,7 +24,6 @@ function calculate () {
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
-			console.log(points[i][0]);
 			if(points[i][0].length==0 || points[i][1].length==""){
 				alert("Please enter values for all fields");
 				return;	
@@ -44,7 +46,7 @@ function calculate () {
 		var denominator = 1;
 		for(var j = 0; j< points.length; j++){
 			if(i != j){
-				denominator *= (points[i][0]-points[j][0]); 
+				denominator =math.chain(points[i][0]).subtract(points[j][0]).multiply(denominator).done(); 
 			}
 		}
 		

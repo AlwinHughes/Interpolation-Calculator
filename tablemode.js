@@ -3,7 +3,9 @@ var order = 3;
 var x_vals;
 var y_vals;
 var no_of_x=3;//zero based counting
-
+math.config({
+  number: 'Fraction'
+});
 function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	//set up
 	x_vals = [];
@@ -66,7 +68,7 @@ function getYValue(x,coifitionts){
 	var return_val = 0;
 	for(var i = 0; i<coifitionts.length; i++){
 
-		return_val += math.chain(x).pow(i).multiply(coifitionts[i]);
+		return_val = math.chain(x).pow(i).multiply(coifitionts[i]).add(return_val).done();
 	}
 	return return_val;
 }
