@@ -16,6 +16,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 		};
 		
 		for (var i = 0; i <= order; i++) {
+			console.log(i);
 			table_coifits.push(document.getElementById("coif_"+i).value);	
 		}
 
@@ -42,10 +43,29 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	}
 };
 
+function transferCoifitionts(){
+	if(coifitionts[0]){
+		if(order> coifitionts.length-2){
+			for (var i = 0; i <= order; i++) {
+				document.getElementById("coif_"+i).value = coifitionts[coifitionts.length-1-i];
+			};
+		}else{
+			for(var i = order+1; i<coifitionts.length;i++){
+				order++;
+				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+i+'"><td><center>x^'+i+'</center></td><td id="inx^'+i+'" height="20px" width="50px"><center><input type="number" id="coif_'+i+'"></center></td></tr>');
+			};
+			for (var i = 0; i <= order; i++) {
+				document.getElementById("coif_"+i).value = coifitionts[coifitionts.length-1-i];
+			};
+		}
+	}
+}
+
 
 function getYValue(x,coifitionts){
 	var return_val = 0;
 	for(var i = 0; i<coifitionts.length; i++){
+
 		return_val += math.chain(x).pow(i).multiply(coifitionts[i]);
 	}
 	return return_val;

@@ -78,6 +78,7 @@ function displayCoifits(){
 	}
 }
 
+
 function selectAllBut(array,not) {
 	var variable = [];
 	for (var i = 0; i < array.length; i++) {
