@@ -6,8 +6,11 @@ var answer_as_decimal = true;
 math.config({
   number: 'Fraction'
 });
+var start_time;
 function calculate () {
 	// set up
+	
+	start_time = new Date().getTime();
 	resetResults();
 	points = [];
 	block_size = 0;
@@ -37,7 +40,10 @@ function calculate () {
 
 		}
 	}
-	
+	var eta = math.exp(points.length*0.8344)*0.376;
+	if(eta>80000 && !confirm("This calculation is predicted to take around "+math.fix(eta/1000)+" seconds to complete. Do you want to continue with it?")){
+		return;
+	}
 
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var combs = combinations(getstring(selectAllBut(points,i)));
@@ -64,6 +70,7 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	displayCoifits();
+	console.log("took " +(new Date().getTime() - start_time)+" ms to complete");
 
 }
 
@@ -151,9 +158,9 @@ $(document).ready(function(){
 		console.log("delete row");
 		if(no_of_points>2){
 			resetResults();
-			$('#value_table_body').children().last().remove();
-			$("#results_lable").children().first().remove();
-			$("#result_row").children().first().remove();
+			$('#value_table_body tr:last-child').remove();
+			$("#results_lable tr:first-child").remove();
+			$("#result_row tr:first-child").remove();
 			no_of_points--;
 		}
 	});
