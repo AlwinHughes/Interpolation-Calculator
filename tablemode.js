@@ -3,6 +3,7 @@ var order = 3;
 var x_vals;
 var y_vals;
 var no_of_x=3;//zero based counting
+var table_answer_as_decimal = true;
 math.config({
   number: 'Fraction'
 });
@@ -14,12 +15,12 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 		//getting values
 
 		for (var i = 0; i < no_of_x+1; i++) {
-			x_vals.push(document.getElementById("table_x_"+i).value);
+			x_vals.push(math.eval(document.getElementById("table_x_"+i).value));
 		};
 		
 		for (var i = 0; i <= order; i++) {
 			console.log(i);
-			table_coifits.push(document.getElementById("coif_"+i).value);	
+			table_coifits.push(math.eval(document.getElementById("coif_"+i).value));
 		}
 
 	}else{
@@ -37,9 +38,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	};
 	if(!push_to_ui){
 		//displaying values
-		for (var i = 0; i < y_vals.length; i++) {
-			document.getElementById("table_y_"+i).innerHTML = y_vals[i];
-		};	
+		displayYValues();
 	}else{
 		return y_vals;
 	}
@@ -73,6 +72,16 @@ function getYValue(x,coifitionts){
 	return return_val;
 }
 
+function displayYValues(){
+	if(y_vals){
+		console.log(y_vals);
+		for (var i = 0; i < y_vals.length; i++) {
+
+			document.getElementById("table_y_"+i).innerHTML = table_answer_as_decimal ? y_vals[i] : (y_vals[i].d ==1 ? y_vals[i].n: y_vals[i].s*y_vals[i].n +"/"+y_vals[i].d);
+		};	
+	}
+}
+
 
 $(document).ready(function(){
 	$("#tablemode_higher_order").click(function(){
@@ -99,4 +108,16 @@ $(document).ready(function(){
 			no_of_x--;
 		}
 	})
+
+	$('#table_radio_frac').click(function(){
+		console.log("frac");
+		table_answer_as_decimal = false;
+		displayYValues();
+	});
+	
+	$('#table_radio_decimal').click(function(){
+		console.log("decimal");
+		table_answer_as_decimal = true;
+		displayYValues();
+	});
 })
