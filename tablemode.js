@@ -13,11 +13,18 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	table_coifits = [];
 	if(!push_to_ui){
 		//getting values
-
 		for (var i = 0; i < no_of_x+1; i++) {
-			x_vals.push(math.eval(document.getElementById("table_x_"+i).value));
+			if(document.getElementById("table_x_"+i).value){
+				x_vals.push(math.eval(document.getElementById("table_x_"+i).value));	
+			}else{
+				x_vals.push(0);
+				document.getElementById("table_x_"+i).value = 0;
+			}
+			
 		};
-		
+		console.log(x_vals);
+		//checking for undefined and seeting them to zero
+
 		for (var i = 0; i <= order; i++) {
 			console.log(i);
 			table_coifits.push(math.eval(document.getElementById("coif_"+i).value));
@@ -48,7 +55,7 @@ function transferCoifitionts(){
 	if(coifitionts[0]){
 		if(order> coifitionts.length-2){
 			for (var i = 0; i <= order; i++) {
-				document.getElementById("coif_"+i).value = coifitionts[coifitionts.length-1-i];
+				document.getElementById("coif_"+i).value = (coifitionts[coifitionts.length-1-i].n==0)? "0": (coifitionts[coifitionts.length-1-i].d == 1) ? coifitionts[coifitionts.length-1-i].n*coifitionts[coifitionts.length-1-i].s :  coifitionts[coifitionts.length-1-i].s*coifitionts[coifitionts.length-1-i].n +"/" +coifitionts[coifitionts.length-1-i].d;
 			};
 		}else{
 			for(var i = order+1; i<coifitionts.length;i++){
@@ -56,7 +63,7 @@ function transferCoifitionts(){
 				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+i+'"><td><center>x^'+i+'</center></td><td id="inx^'+i+'" height="20px" width="50px"><center><input type="number" id="coif_'+i+'"></center></td></tr>');
 			};
 			for (var i = 0; i <= order; i++) {
-				document.getElementById("coif_"+i).value = coifitionts[coifitionts.length-1-i];
+				document.getElementById("coif_"+i).value = (coifitionts[coifitionts.length-1-i].n==0)? "0": (coifitionts[coifitionts.length-1-i].d == 1) ? coifitionts[coifitionts.length-1-i].n*coifitionts[coifitionts.length-1-i].s :  coifitionts[coifitionts.length-1-i].s*coifitionts[coifitionts.length-1-i].n +"/" +coifitionts[coifitionts.length-1-i].d;
 			};
 		}
 	}
