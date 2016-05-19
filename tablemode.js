@@ -4,6 +4,9 @@ var x_vals;
 var y_vals;
 var no_of_x=3;//zero based counting
 var table_answer_as_decimal = true;
+var from;
+var to;
+var step;
 math.config({
   number: 'Fraction'
 });
@@ -11,6 +14,23 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	//set up
 	x_vals = [];
 	table_coifits = [];
+
+	from = parseInt(document.getElementById("table_mode_from").value);
+	to = parseInt(document.getElementById("table_mode_to").value);
+	step = parseInt(document.getElementById("table_mode_step").value);
+	console.log(from +"|"+to+"|"+step);
+	if(from&&to&&step){
+		for(var i = 0; i<=to-from+1;i++){
+			if(i>no_of_x){
+				no_of_x++;
+				$("#table_restuls_above").before('<tr> <td><center><input type="number" id="table_x_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
+			}
+			// console.log(i*step);
+			// console.log("x "+((from + (i*step))));
+			document.getElementById("table_x_"+i).value = (from + (i*step));
+		}
+	}
+
 	if(!push_to_ui){
 		//getting values
 		for (var i = 0; i < no_of_x+1; i++) {
@@ -34,8 +54,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 		x_vals = in_x;
 		table_coifits = in_coif;
 	}
-	
-	
+
 	
 	y_vals = Array(x_vals.length);
 
