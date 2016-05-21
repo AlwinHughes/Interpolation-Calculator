@@ -79,9 +79,9 @@ function displayCoifits(){
 	if(coifitionts){
 		var latex_string = "";
 		for (var i = 0; i < coifitionts.length; i++) {
-			if(answer_as_decimal||math.abs(coifitionts[i].d)==1||coifitionts[i]==0){
+			if(answer_as_decimal||coifitionts[i].d==1||coifitionts[i]==0){
 				if(coifitionts[i] != 0){ //checking coifitiont isnt zero
-					if(coifitionts[i]==1){
+					if(math.abs(coifitionts[i])==1){
 						if(no_of_points-i-1==0){//checkig power isn zero
 							latex_string += (coifitionts[i]>0)? "+1":"-1";//(coifitionts[i]>0)? "+"+coifitionts[i]:"-"+coifitionts[i].abs();
 						}else if(math.abs(no_of_points-i-1)==1){

@@ -82,7 +82,7 @@ function transferCoifitionts(){
 		}else{
 			for(var i = order+1; i<coifitionts.length;i++){
 				order++;
-				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="number" id="coif_'+order+'"></center></td></tr>');
+				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="text" id="coif_'+order+'"></center></td></tr>');
 			};
 			for (var i = 0; i <= order; i++) {
 				document.getElementById("coif_"+i).value = (coifitionts[coifitionts.length-1-i].n==0)? "0": (coifitionts[coifitionts.length-1-i].d == 1) ? coifitionts[coifitionts.length-1-i].n*coifitionts[coifitionts.length-1-i].s :  coifitionts[coifitionts.length-1-i].s*coifitionts[coifitionts.length-1-i].n +"/" +coifitionts[coifitionts.length-1-i].d;
@@ -116,7 +116,7 @@ function displayYValues(){
 $(document).ready(function(){
 	$("#tablemode_higher_order").click(function(){
 		order++;
-		$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="number" id="coif_'+order+'"></center></td></tr>');
+		$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="text" id="coif_'+order+'"></center></td></tr>');
 		MathJax.Hub.Typeset()
 	});
 
