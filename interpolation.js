@@ -75,7 +75,7 @@ function calculate () {
 }
 
 function displayCoifits(){
-	if(coifitionts[0]){
+	if(coifitionts){
 		for (var i = 0; i < coifitionts.length; i++) {
 			if(answer_as_decimal){
 				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];	
