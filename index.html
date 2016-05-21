@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="css.css">
 	<script type="text/javascript" src="interpolation.js"></script>
 	<script type="text/javascript" src="tablemode.js"></script>
+	<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 	
 </head>
 <body>
@@ -16,8 +19,8 @@
 			<table id="value_table" class="input_table">
 				<tbody id="value_table_body">
 					<tr>
-						<td><center>x</center></td>
-						<td><center>f(x)</center></td>
+						<td><center>$$x$$</center></td>
+						<td><center>$$f(x)$$</center></td>
 					</tr>
 					<tr id="row_0">
 						<td><input type="number" id="X_0"></td>
@@ -59,13 +62,13 @@
 		
 		<center><h3>There are some issues with rounding errors</h3></center>
 		<center>
-			<h3>f(x) = </h3>
+			<h3>$$f(x) = $$</h3>
 			<table class="results" border="1|0">
 				<tr id="results_lable">
-					<td><center>x^3</center></td>
-					<td><center>x^2</center></td>
-					<td><center>x^1</center></td>
-					<td><center>x^0</center></td>
+					<td><center>\(x^3\)</center></td>
+					<td><center>\(x^2\)</center></td>
+					<td><center>\(x^1\)</center></td>
+					<td><center>\(x^0\)</center></td>
 				</tr>
 				<tr id="result_row">
 					<td id="x^3" height="20px" width="50px"></td>
@@ -76,10 +79,7 @@
 			</table>
 		</center>
 		<center><button onclick="transferCoifitionts()">Transfer to Table Mode</button></center>
-
-		<br>
-		<br>
-		<br>
+		<center><div id="display_formula">$$f(x) = $$</div></center>
 	</div>
 
 
@@ -96,19 +96,19 @@
 					<td><center>Coifitiont</center></td>
 				</tr>
 				<tr id="coif_row_3">
-					<td><center>x^3</center></td>
+					<td><center>\(x^3\)</center></td>
 					<td id="inx^3" height="20px" width="50px"><center><input type="text" id="coif_3"></center></td>
 				</tr>
 				<tr id="coif_row_2">
-					<td><center>x^2</center></td>
+					<td><center>\(x^2\)</center></td>
 					<td id="inx^2" height="20px" width="50px"><center><input type="text" id="coif_2"></center></td>
 				</tr>
 				<tr id="coif_row_1">
-					<td><center>x^1</center></td>
+					<td><center>\(x^1\)</center></td>
 					<td id="inx^1" height="20px" width="50px"><center><input type="text" id="coif_1"></center></td>
 				</tr>
 				<tr id="coif_row_0">
-					<td><center>x^0</center></td>
+					<td><center>\(x^0\)</center></td>
 					<td id="inx^0" height="20px" width="50px"><center><input type="text" id="coif_0"></center></td>
 				</tr>
 
@@ -143,7 +143,7 @@
 		<br>
 		<center>
 			<table id="table_results" class="results" border"1|0">
-				<tr><td><center>x</center></td><td><center>f(x)</center></td></tr>
+				<tr><td><center>\(x\)</center></td><td><center>\(f(x)\)</center></td></tr>
 				<tr>
 					<td><center><input type="text" id="table_x_0"></center></td>
 					<td><center><p id="table_y_0"></p></center></td>

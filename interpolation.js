@@ -75,15 +75,46 @@ function calculate () {
 }
 
 function displayCoifits(){
+	console.log("displayCoifits");
 	if(coifitionts){
+		var latex_string = "";
 		for (var i = 0; i < coifitionts.length; i++) {
 			if(answer_as_decimal){
-				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i];	
+				if(coifitionts[i] != 0){ //checking coifitiont isnt zero
+					if(coifitionts[i]==1){
+						if(no_of_points-i-1==0){//checkig power isn zero
+							latex_string += (coifitionts[i]>0)? "+1":"-1";//(coifitionts[i]>0)? "+"+coifitionts[i]:"-"+coifitionts[i].abs();
+						}else if(math.abs(no_of_points-i-1)==1){
+							latex_string += (coifitionts[i]>0)? "+x":"-x";
+						}else{
+							latex_string += (coifitionts[i]>0)? "+" + String("x^"+String(no_of_points-i-1)): "-" + String("x^"+String(no_of_points-i-1));
+						}	
+					}else{
+						if(no_of_points-i-1==0){//checkig power isn zero
+							latex_string += (coifitionts[i]>0)? "+"+coifitionts[i]:"-"+coifitionts[i].abs();
+						}else if(no_of_points-i-1==1){
+							latex_string += (coifitionts[i]>0)? "+"+coifitionts[i]+"x":"-"+coifitionts[i].abs()+"x";
+						}else{
+							latex_string += (coifitionts[i]>0)? "+" + coifitionts[i]+String("x^"+String(no_of_points-i-1)): "-" + coifitionts[i].abs()+String("x^"+String(no_of_points-i-1));
+						}	
+					}
+					
+					console.log(latex_string)	
+				}
+				
+				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i]
 			}else{
+				
 				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = (coifitionts[i].n==0)? "0": (coifitionts[i].d == 1) ? coifitionts[i].n*coifitionts[i].s : (coifitionts[i].s == -1 ? "-" : " ") + coifitionts[i].n +"/" +coifitionts[i].d;	
-			}
-			
+			}	
 		};
+		
+		if(latex_string.charAt(0)=="+"){
+			latex_string = latex_string.substring(1);
+		}
+		console.log(latex_string)
+		document.getElementById("display_formula").innerHTML = "$$ f(x) ="+latex_string+"$$";
+		MathJax.Hub.Typeset()
 	}
 }
 
