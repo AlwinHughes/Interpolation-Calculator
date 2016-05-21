@@ -79,7 +79,7 @@ function displayCoifits(){
 	if(coifitionts){
 		var latex_string = "";
 		for (var i = 0; i < coifitionts.length; i++) {
-			if(answer_as_decimal){
+			if(answer_as_decimal||math.abs(coifitionts[i].d)==1||coifitionts[i]==0){
 				if(coifitionts[i] != 0){ //checking coifitiont isnt zero
 					if(coifitionts[i]==1){
 						if(no_of_points-i-1==0){//checkig power isn zero
@@ -104,7 +104,13 @@ function displayCoifits(){
 				
 				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i]
 			}else{
-				
+				if(no_of_points-i-1==0){//checkig power isn zero
+					latex_string += ((coifitionts[i]>0)? "+":"-")+"\\frac{"+coifitionts[i].n+"}{"+coifitionts[i].d+"}";
+				}else if(no_of_points-i-1==1){
+					latex_string += ((coifitionts[i]>0)? "+":"-")+"\\frac{"+coifitionts[i].n+"}{"+coifitionts[i].d+"}x";
+				}else{
+					latex_string += ((coifitionts[i]>0)? "+":"-")+"\\frac{"+coifitionts[i].n+"}{"+coifitionts[i].d+"} x^"+String(no_of_points-i-1);
+				}	
 				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = (coifitionts[i].n==0)? "0": (coifitionts[i].d == 1) ? coifitionts[i].n*coifitionts[i].s : (coifitionts[i].s == -1 ? "-" : " ") + coifitionts[i].n +"/" +coifitionts[i].d;	
 			}	
 		};
@@ -114,7 +120,7 @@ function displayCoifits(){
 		}
 		console.log(latex_string)
 		document.getElementById("display_formula").innerHTML = "$$ f(x) ="+latex_string+"$$";
-		MathJax.Hub.Typeset()
+		MathJax.Hub.Typeset();
 	}
 }
 

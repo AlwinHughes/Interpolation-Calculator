@@ -22,7 +22,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	if((!isNaN(from))&&(!isNaN(to))&&(!isNaN(step))&&step>0&&to>from){
 		if(order>x_vals){
 			for(var i = order; i>x_vals; i--){
-
+				
 			}
 		}
 		for(var i = 0; from + i*step<=to;i++){
@@ -82,11 +82,12 @@ function transferCoifitionts(){
 		}else{
 			for(var i = order+1; i<coifitionts.length;i++){
 				order++;
-				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>x^'+order+'</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="number" id="coif_'+order+'"></center></td></tr>');
+				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="number" id="coif_'+order+'"></center></td></tr>');
 			};
 			for (var i = 0; i <= order; i++) {
 				document.getElementById("coif_"+i).value = (coifitionts[coifitionts.length-1-i].n==0)? "0": (coifitionts[coifitionts.length-1-i].d == 1) ? coifitionts[coifitionts.length-1-i].n*coifitionts[coifitionts.length-1-i].s :  coifitionts[coifitionts.length-1-i].s*coifitionts[coifitionts.length-1-i].n +"/" +coifitionts[coifitionts.length-1-i].d;
 			};
+			MathJax.Hub.Typeset();
 		}
 	}
 }
@@ -115,7 +116,8 @@ function displayYValues(){
 $(document).ready(function(){
 	$("#tablemode_higher_order").click(function(){
 		order++;
-		$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>x^'+order+'</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="number" id="coif_'+order+'"></center></td></tr>');
+		$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="number" id="coif_'+order+'"></center></td></tr>');
+		MathJax.Hub.Typeset()
 	});
 
 	$("#tablemode_lower_order").click(function(){
@@ -128,7 +130,7 @@ $(document).ready(function(){
 
 	$('#table_add_input_row').click(function(){
 		no_of_x++;
-		$("#table_restuls_above").before('<tr> <td><center><input type="text" id="table_x_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
+		$("#table_restuls_above").before('<tr> <td><center><input type="text" id="table_xf_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
 	});
 
 	$('#table_delete_input_row').click(function(){
