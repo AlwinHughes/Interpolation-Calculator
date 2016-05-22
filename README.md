@@ -1,7 +1,7 @@
 # Interpolation-Calculator
-A website that will Interpolate n points and find at most a n-1 order polynomial to fit them.
+A website that Interpolates n points and find at most a n-1 order polynomial to fit them.
 
-It can now interpolate n points. 
+Also has a table mode feature.
 
 Not too many rounding errors any more.
 

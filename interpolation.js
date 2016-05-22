@@ -22,7 +22,7 @@ function calculate () {
 	
 	//populating array
 	for(var i = 0; i < no_of_points;i++ ){
-		points.push([parseInt(document.getElementById('X_'+i).value), parseInt(document.getElementById('Y_'+i).value)]);
+		points.push([parseFloat(document.getElementById('X_'+i).value), parseFloat(document.getElementById('Y_'+i).value)]);
 	}
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){

@@ -47,11 +47,17 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 		};
 		console.log(x_vals);
 		//checking for undefined and seeting them to zero
-
-		for (var i = 0; i <= order; i++) {
-			console.log(i);
-			table_coifits.push(math.eval(document.getElementById("coif_"+i).value));
+		try{
+			for (var i = 0; i <= order; i++) {
+				console.log(i);
+				table_coifits.push(math.eval(document.getElementById("coif_"+i).value));
+			}	
+		}catch(err){
+			console.log(err);
+			alert("x coifitionts must be \u2208 \u211A");
+			return;
 		}
+		
 
 	}else{
 		x_vals = in_x;
@@ -82,7 +88,7 @@ function transferCoifitionts(){
 		}else{
 			for(var i = order+1; i<coifitionts.length;i++){
 				order++;
-				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="text" id="coif_'+order+'"></center></td></tr>');
+				$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+':\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="text" id="coif_'+order+'"></center></td></tr>');
 			};
 			for (var i = 0; i <= order; i++) {
 				document.getElementById("coif_"+i).value = (coifitionts[coifitionts.length-1-i].n==0)? "0": (coifitionts[coifitionts.length-1-i].d == 1) ? coifitionts[coifitionts.length-1-i].n*coifitionts[coifitionts.length-1-i].s :  coifitionts[coifitionts.length-1-i].s*coifitionts[coifitionts.length-1-i].n +"/" +coifitionts[coifitionts.length-1-i].d;
@@ -116,7 +122,7 @@ function displayYValues(){
 $(document).ready(function(){
 	$("#tablemode_higher_order").click(function(){
 		order++;
-		$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+'\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="text" id="coif_'+order+'"></center></td></tr>');
+		$('#table_mode_input tr:eq(0)').after('<tr id="coif_row_'+order+'"><td><center>\\(x^'+order+':\\)</center></td><td id="inx^'+order+'" height="20px" width="50px"><center><input type="text" id="coif_'+order+'"></center></td></tr>');
 		MathJax.Hub.Typeset()
 	});
 
