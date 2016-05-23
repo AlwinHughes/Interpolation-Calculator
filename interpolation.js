@@ -52,24 +52,28 @@ function calculate () {
 	}
 
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
+		var stuff = new Date().getTime();
 		var combs = combinations(getstring(selectAllBut(points,i)));
-			
+		console.log((new Date().getTime() - stuff)+" ms to expand");
 		//calculating bottom of fraciton 
-		var denominator = 1;
+		var string_denominator = "";
 		for(var j = 0; j< points.length; j++){
 			if(i != j){
-				denominator =math.chain(points[i][0]).subtract(points[j][0]).multiply(denominator).done(); 
+				string_denominator += "("+points[i][0]+"-"+points[j][0]+")";//math.chain(points[i][0]).subtract(points[j][0]).multiply(denominator).done(); 
 			}
 		}
 		
+		var denominator = math.eval(string_denominator);
+		
+		console.log(denominator);
 		//dealing with all terms that are not the highest power
 
 		for (var k = 0; k < combs.length; k++) {
-			coifitionts[combs[k].replace(/[^*]/g, "").length+1] = math.chain(math.eval(combs[k])).multiply(math.fraction(points[i][1],denominator)).add(coifitionts[combs[k].replace(/[^*]/g, "").length+1]).done();
+			coifitionts[combs[k].replace(/[^*]/g, "").length+1] = math.chain(math.eval(combs[k])).multiply(points[i][1]).divide(denominator).add(coifitionts[combs[k].replace(/[^*]/g, "").length+1]).done();
 		};
 
 		//dealing with coifitions for highest power
-		coifitionts[0] = math.chain(coifitionts[0]).add(math.fraction(points[i][1],denominator)).done();
+		coifitionts[0] = math.chain(coifitionts[0]).add(math.chain(points[i][1]).divide(denominator).done()).done();
 	}
 
 	console.log(coifitionts);
@@ -88,7 +92,7 @@ function displayCoifits(){
 		var latex_string = "";
 		for (var i = 0; i < coifitionts.length; i++) {
 			if(answer_as_decimal||coifitionts[i].d==1||coifitionts[i]==0){
-				console.log(math.string(coifitionts[i]));
+
 				if(math.string(coifitionts[i]).indexOf("(") >= 0){// check if reocuring 
 					math_string = math.string(math.abs(coifitionts[i]));
 					iration_string = math_string.substring(math_string.indexOf("(")+1,math_string.length-1)
@@ -119,8 +123,7 @@ function displayCoifits(){
 							latex_string += (coifitionts[i]>0)? "+" + coifitionts[i]+String("x^"+String(no_of_points-i-1)): "-" + coifitionts[i].abs()+String("x^"+String(no_of_points-i-1));
 						}	
 					}
-					
-					console.log(latex_string)	
+						
 				}
 				
 				document.getElementById("x^"+(no_of_points-i-1)).innerHTML = coifitionts[i]
@@ -139,7 +142,6 @@ function displayCoifits(){
 		if(latex_string.charAt(0)=="+"){
 			latex_string = latex_string.substring(1);
 		}
-		console.log(latex_string)
 		document.getElementById("display_formula").innerHTML = "$$ f(x) ="+latex_string+"$$";
 		MathJax.Hub.Typeset();
 	}
@@ -180,6 +182,7 @@ function findSmallest(array){
 }
 
 function getstring(data){
+	console.log(data);
 	//geting block size
 	for (var i = 0; i < data.length; i++) {
 		if(String(-1*data[i]).length>block_size){
@@ -192,6 +195,7 @@ function getstring(data){
 	for (var i = 0; i < data.length; i++) {
 		return_string = return_string+ addzeroes(String((-1)*data[i]),((-1)*data[i])<0);
 	}
+	console.log(return_string);
 	return return_string;
 }
 
@@ -243,12 +247,11 @@ $(document).ready(function(){
 
 });
 
-
+var start;
 function combinations(str) {
     return fn("", str, []);
 }
 var fn = function(active, rest, a) {
-    
     if (!active && !rest)
             return;
     if (!rest) {
