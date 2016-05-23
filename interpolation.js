@@ -19,11 +19,17 @@ function calculate () {
 	for (var i = 0; i < coifitionts.length; i++) {
 		coifitionts[i] = 0;
 	};
-	
+	math.config({
+  		number: 'number'
+	});
 	//populating array
 	for(var i = 0; i < no_of_points;i++ ){
-		points.push([parseFloat(document.getElementById('X_'+i).value), parseFloat(document.getElementById('Y_'+i).value)]);
+		points.push([math.eval(document.getElementById('X_'+i).value), math.eval(document.getElementById('Y_'+i).value)]);
 	}
+	math.config({
+  		number: 'Fraction'
+	});
+	console.log(points);
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
@@ -73,17 +79,32 @@ function calculate () {
 	console.log("took " +(new Date().getTime() - start_time)+" ms to complete");
 
 }
-
+var math_string;
+var iration_string;
+var iration_start
 function displayCoifits(){
 	console.log("displayCoifits");
 	if(coifitionts){
 		var latex_string = "";
 		for (var i = 0; i < coifitionts.length; i++) {
 			if(answer_as_decimal||coifitionts[i].d==1||coifitionts[i]==0){
-				if(coifitionts[i] != 0){ //checking coifitiont isnt zero
+				console.log(math.string(coifitionts[i]));
+				if(math.string(coifitionts[i]).indexOf("(") >= 0){// check if reocuring 
+					math_string = math.string(math.abs(coifitionts[i]));
+					iration_string = math_string.substring(math_string.indexOf("(")+1,math_string.length-1)
+					iration_start = math.string(coifitionts[i]).indexOf("(")-1;
+
+					if(no_of_points-i-1==0){//checkig power isn zero
+						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}";
+					}else if(no_of_points-i-1==1){
+						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+"x":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+"x";
+					}else{
+						latex_string += (coifitionts[i]>0)? "+" + math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+String("x^"+String(no_of_points-i-1)): "-" + math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+String("x^"+String(no_of_points-i-1));
+					}	
+				}else if(coifitionts[i] != 0){ //checking coifitiont isnt zero
 					if(math.abs(coifitionts[i])==1){
 						if(no_of_points-i-1==0){//checkig power isn zero
-							latex_string += (coifitionts[i]>0)? "+1":"-1";//(coifitionts[i]>0)? "+"+coifitionts[i]:"-"+coifitionts[i].abs();
+							latex_string += (coifitionts[i]>0)? "+1":"-1";
 						}else if(math.abs(no_of_points-i-1)==1){
 							latex_string += (coifitionts[i]>0)? "+x":"-x";
 						}else{
@@ -196,18 +217,18 @@ $(document).ready(function(){
 		if(no_of_points>2){
 			resetResults();
 			$('#value_table_body tr:last-child').remove();
-			$("#results_lable tr:first-child").remove();
-			$("#result_row tr:first-child").remove();
+			$("#results_lable td:first-child").remove();
+			$("#result_row td:first-child").remove();
 			no_of_points--;
 		}
 	});
 
 	$("#add_row").click(function(){
-
 		$('#value_table tbody').append('<tr id="row_'+(no_of_points)+'"> <td><input type="number"id="X_'+(no_of_points)+'"></td> <td><input type="number"id="Y_'+(no_of_points)+'"></td> </tr>');
-		$('#results_lable').prepend("<td><center>x^"+(no_of_points)+"</center></td>");
+		$('#results_lable').prepend("<td><center>\\(x^"+(no_of_points)+"\\)</center></td>");
 		$('#result_row').prepend('<td id="x^'+(no_of_points)+'" height="20px" width="50px"></td>')
 		no_of_points++;
+		MathJax.Hub.Typeset();
 	});
 
 	$('#radio_frac').click(function(){
@@ -220,14 +241,12 @@ $(document).ready(function(){
 		displayCoifits();
 	});
 
-})
+});
 
 
 function combinations(str) {
     return fn("", str, []);
 }
-
-
 var fn = function(active, rest, a) {
     
     if (!active && !rest)

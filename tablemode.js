@@ -57,6 +57,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 			alert("x coifitionts must be \u2208 \u211A");
 			return;
 		}
+		console.log(table_coifits);
 		
 
 	}else{
@@ -136,7 +137,7 @@ $(document).ready(function(){
 
 	$('#table_add_input_row').click(function(){
 		no_of_x++;
-		$("#table_restuls_above").before('<tr> <td><center><input type="text" id="table_xf_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
+		$("#table_restuls_above").before('<tr> <td><center><input type="text" id="table_x_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
 	});
 
 	$('#table_delete_input_row').click(function(){
