@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Interpolation</title>
@@ -6,8 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="css.css">
 	<script type="text/javascript" src="interpolation.js"></script>
 	<script type="text/javascript" src="tablemode.js"></script>
+	<script type="text/javascript" src="plot.js"></script>
 	<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://wzrd.in/standalone/function-plot@1.14.0"></script>
+
 </script>
 	
 </head>
@@ -80,6 +86,10 @@
 		</center>
 		<center><button onclick="transferCoifitionts()">Transfer to Table Mode</button></center>
 		<center><div id="display_formula">$$f(x) = $$</div></center>
+		<br>
+		<button onclick="plotGraph()">Plot Graph</button>
+		<br>
+		<center><div id="plot"></div></center>
 	</div>
 
 
