@@ -1,5 +1,5 @@
 var	points;
-var coifitionts;//in increasing powers
+var coifitionts;//in decreaseing power
 var block_size;
 var no_of_points = 4;
 var answer_as_decimal = true;
@@ -95,15 +95,17 @@ function displayCoifits(){
 
 				if(math.string(coifitionts[i]).indexOf("(") >= 0){// check if reocuring 
 					math_string = math.string(math.abs(coifitionts[i]));
-					iration_string = math_string.substring(math_string.indexOf("(")+1,math_string.length-1)
+					console.log("math s: "+math_string);
+					iration_string = math_string.substring(math_string.indexOf("(")+1,math_string.length-1);
+					console.log("ira s: "+iration_string);
 					iration_start = math.string(coifitionts[i]).indexOf("(")-1;
-
+					console.log("ira st: "+iration_start);	
 					if(no_of_points-i-1==0){//checkig power isn zero
-						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}";
+						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start+1)+"\\overline{"+iration_string+"}":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}";
 					}else if(no_of_points-i-1==1){
-						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+"x":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+"x";
+						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start+1)+"\\overline{"+iration_string+"}"+"x":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+"x";
 					}else{
-						latex_string += (coifitionts[i]>0)? "+" + math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+String("x^"+String(no_of_points-i-1)): "-" + math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+String("x^"+String(no_of_points-i-1));
+						latex_string += (coifitionts[i]>0)? "+" + math_string.substring(0,iration_start+1)+"\\overline{"+iration_string+"}"+String("x^"+String(no_of_points-i-1)): "-" + math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}"+String("x^"+String(no_of_points-i-1));
 					}	
 				}else if(coifitionts[i] != 0){ //checking coifitiont isnt zero
 					if(math.abs(coifitionts[i])==1){

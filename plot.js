@@ -11,7 +11,7 @@ function plotGraph () {
 				if(coifitionts[i]>0){
 					function_string += "+" + coifitionts[i]+"*x^"+(coifitionts.length-i-1); 
 				}else{
-					function_string += "-" + coifitionts[i]+"*x^"+(coifitionts.length-i-1);
+					function_string += "-" + math.abs(coifitionts[i])+"*x^"+(coifitionts.length-i-1);
 				}
 			};
 		}
