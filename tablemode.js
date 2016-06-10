@@ -30,7 +30,7 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 				no_of_x++;
 				$("#table_restuls_above").before('<tr> <td><center><input type="text" id="table_x_'+no_of_x+'"></center></td><td><center><p id="table_y_'+no_of_x+'"></p></center></td> </tr>');
 			}
-			document.getElementById("table_x_"+i).value = math.chain(i).multiply(step).add(from).done();
+			document.getElementById("table_x_"+i).value = 	math.chain(i).multiply(step).add(from).done();
 		}
 	}
 

@@ -1,5 +1,5 @@
 var function_string;
-function plotGraph () {
+function plotGraph() {
 	console.log(function_string);
 	function_string = "";
 	math.config({
