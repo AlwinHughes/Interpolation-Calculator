@@ -19,6 +19,7 @@ function calculate () {
 	for (var i = 0; i < coifitionts.length; i++) {
 		coifitionts[i] = 0;
 	};
+	console.log("coifits length "+coifitionts.length);
 	math.config({
   		number: 'number'
 	});
@@ -29,7 +30,6 @@ function calculate () {
 	math.config({
   		number: 'Fraction'
 	});
-	console.log(points);
 	//checking for repeats and zeroes
 	for(var i = 0; i<points.length; i++){
 		for(var j = 0; j< selectAllBut(points,i).length; j++){
@@ -54,8 +54,6 @@ function calculate () {
 	for (var i = 0; i < points.length; i++) {// loop selects which x value is not in the top of the fraction (which term of the equation it is)
 		var stuff = new Date().getTime();
 		var combs = combinations(getstring(selectAllBut(points,i)));
-		console.log((new Date().getTime() - stuff)+" ms to expand");
-		//calculating bottom of fraciton 
 		var string_denominator = "";
 		for(var j = 0; j< points.length; j++){
 			if(i != j){
@@ -64,10 +62,7 @@ function calculate () {
 		}
 		
 		var denominator = math.eval(string_denominator);
-		
-		console.log(denominator);
 		//dealing with all terms that are not the highest power
-
 		for (var k = 0; k < combs.length; k++) {
 			coifitionts[combs[k].replace(/[^*]/g, "").length+1] = math.chain(math.eval(combs[k])).multiply(points[i][1]).divide(denominator).add(coifitionts[combs[k].replace(/[^*]/g, "").length+1]).done();
 		};
@@ -75,8 +70,6 @@ function calculate () {
 		//dealing with coifitions for highest power
 		coifitionts[0] = math.chain(coifitionts[0]).add(math.chain(points[i][1]).divide(denominator).done()).done();
 	}
-
-	console.log(coifitionts);
 
 	var lowest = findSmallest(coifitionts);
 	displayCoifits();
