@@ -82,15 +82,11 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 
 function transferCoifitionts(){
 	if(coifitionts||coifitionts[0]){
-		console.log("order: "+order);
-		console.log("coifitionts: "+ (coifitionts.length-1));
 		if(order>coifitionts.length-1){
-			console.log("decrease seize");
-			for(; order<=coifitionts.length;order++){
+			for(; order>=coifitionts.length;order--){
 				$("#coif_row_"+order).remove();
 			}
 		}else if(order<coifitionts.length-1){
-			console.log("increase size");
 			for(;order<coifitionts.length-1;order++){
 				$("#table_mode_input tr:eq(0)").after("<tr id='coif_row_"+(order+1)+"'> <td><center>\\(x^"+(order+1)+":\\)</center></td> <td id='inx^"+(order+1)+"' height='20px' width='50px'><center><input type='text' id='coif_"+(order+1)+"'></center></td> </tr>");
 			}
