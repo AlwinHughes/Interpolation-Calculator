@@ -18,7 +18,6 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 	from = parseFloat(document.getElementById("table_mode_from").value);
 	to = parseFloat(document.getElementById("table_mode_to").value);
 	step = parseFloat	(document.getElementById("table_mode_step").value);
-	console.log(from +"|"+to+"|"+step);
 	if((!isNaN(from))&&(!isNaN(to))&&(!isNaN(step))&&step>0&&to>from){
 		if(order>x_vals){
 			for(var i = order; i>x_vals; i--){
@@ -45,21 +44,15 @@ function tablemodeCalculate(push_to_ui,in_x,in_coif){
 			}
 			
 		};
-		console.log(x_vals);
 		//checking for undefined and seeting them to zero
 		try{
 			for (var i = 0; i <= order; i++) {
-				console.log(i);
 				table_coifits.push(math.eval(document.getElementById("coif_"+i).value));
 			}	
 		}catch(err){
-			console.log(err);
 			alert("x coifitionts must be \u2208 \u211A");
 			return;
 		}
-		console.log(table_coifits);
-		
-
 	}else{
 		x_vals = in_x;
 		table_coifits = in_coif;
@@ -112,10 +105,8 @@ function getYValue(x,coifitionts){
 
 function displayYValues(){
 	if(y_vals){
-		console.log(y_vals);
 		for (var i = 0; i < y_vals.length; i++) {
-
-			document.getElementById("table_y_"+i).innerHTML = table_answer_as_decimal ? y_vals[i] : (y_vals[i].d ==1 ? y_vals[i].n: y_vals[i].s*y_vals[i].n +"/"+y_vals[i].d);
+			document.getElementById("table_y_"+i).innerHTML = table_answer_as_decimal ? y_vals[i] : (y_vals[i].d ==1 ? y_vals[i].s*y_vals[i].n: y_vals[i].s*y_vals[i].n +"/"+y_vals[i].d);
 		};	
 	}
 }
@@ -149,13 +140,11 @@ $(document).ready(function(){
 	})
 
 	$('#table_radio_frac').click(function(){
-		console.log("frac");
 		table_answer_as_decimal = false;
 		displayYValues();
 	});
 	
 	$('#table_radio_decimal').click(function(){
-		console.log("decimal");
 		table_answer_as_decimal = true;
 		displayYValues();
 	});

@@ -19,7 +19,6 @@ function calculate () {
 	for (var i = 0; i < coifitionts.length; i++) {
 		coifitionts[i] = 0;
 	};
-	console.log("coifits length "+coifitionts.length);
 	math.config({
   		number: 'number'
 	});
@@ -73,14 +72,12 @@ function calculate () {
 
 	var lowest = findSmallest(coifitionts);
 	displayCoifits();
-	console.log("took " +(new Date().getTime() - start_time)+" ms to complete");
 
 }
 var math_string;
 var iration_string;
 var iration_start
 function displayCoifits(){
-	console.log("displayCoifits");
 	if(coifitionts){
 		var latex_string = "";
 		for (var i = 0; i < coifitionts.length; i++) {
@@ -88,11 +85,8 @@ function displayCoifits(){
 
 				if(math.string(coifitionts[i]).indexOf("(") >= 0){// check if reocuring 
 					math_string = math.string(math.abs(coifitionts[i]));
-					console.log("math s: "+math_string);
 					iration_string = math_string.substring(math_string.indexOf("(")+1,math_string.length-1);
-					console.log("ira s: "+iration_string);
 					iration_start = math.string(coifitionts[i]).indexOf("(")-1;
-					console.log("ira st: "+iration_start);	
 					if(no_of_points-i-1==0){//checkig power isn zero
 						latex_string += (coifitionts[i]>0)? "+"+math_string.substring(0,iration_start+1)+"\\overline{"+iration_string+"}":"-"+math_string.substring(0,iration_start)+"\\overline{"+iration_string+"}";
 					}else if(no_of_points-i-1==1){
@@ -177,7 +171,6 @@ function findSmallest(array){
 }
 
 function getstring(data){
-	console.log(data);
 	//geting block size
 	for (var i = 0; i < data.length; i++) {
 		if(String(-1*data[i]).length>block_size){
@@ -190,7 +183,6 @@ function getstring(data){
 	for (var i = 0; i < data.length; i++) {
 		return_string = return_string+ addzeroes(String((-1)*data[i]),((-1)*data[i])<0);
 	}
-	console.log(return_string);
 	return return_string;
 }
 
@@ -212,7 +204,6 @@ function addzeroes(string,is_negative){
 
 $(document).ready(function(){
 	$("#delete_row").click(function(){
-		console.log("delete row");
 		if(no_of_points>2){
 			resetResults();
 			$('#value_table_body tr:last-child').remove();

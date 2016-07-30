@@ -1,6 +1,5 @@
 var function_string;
 function plotGraph() {
-	console.log(function_string);
 	function_string = "";
 	math.config({
   		number: 'number'
@@ -19,7 +18,6 @@ function plotGraph() {
 		if(function_string.charAt(0)=="+"){
 			function_string = function_string.substring(1);
 		}
-		console.log(function_string);
 		functionPlot({
 			target: "#plot",
 			data: [{
