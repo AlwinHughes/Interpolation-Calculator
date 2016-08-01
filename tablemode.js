@@ -105,6 +105,11 @@ function getYValue(x,coifitionts){
 
 function displayYValues(){
 	if(y_vals){
+		if(table_answer_as_decimal){
+			for(var i = 0; i<y_vals.length;i++){
+				y_vals[i] = math.fraction(parseFloat(y_vals[i]).toFixed(8));
+			}	
+		}
 		for (var i = 0; i < y_vals.length; i++) {
 			document.getElementById("table_y_"+i).innerHTML = table_answer_as_decimal ? y_vals[i] : (y_vals[i].d ==1 ? y_vals[i].s*y_vals[i].n: y_vals[i].s*y_vals[i].n +"/"+y_vals[i].d);
 		};	
